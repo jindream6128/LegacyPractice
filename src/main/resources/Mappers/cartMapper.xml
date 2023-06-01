@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- NO, PRODUCTNAME, productOrigin, productPrice, productCategory, PRODUCTFILENAME, ID, TODAY
+
+private int    no;
+	private String productName;
+	private String productOrigin;
+	private int productPrice;
+	private String productCategory;
+	private String fileName;
+	private String id;
+	private String seller;
+	private String regdate; -->
+<mapper namespace="com.bit.dto.cartMapper">
+    <resultMap type="product" id="prodcutListID">
+        <result property="no" column="no"/>
+        <result property="productName" column="PRODUCTNAME"/>
+        <result property="productOrigin" column="PRODUCTLOCATION"/>
+        <result property="productPrice" column="PRODUCTPRICE"/>
+        <result property="productCategory" column="PRODUCTCATEGORY"/>
+        <result property="fileName" column="PRODUCTFILENAME"/>
+        <result property="id" column="ID"/>
+        <result property="regdate" column="TODAY"/>
+    </resultMap>
+
+    <select id="idPassCheck" parameterType="java.util.HashMap" resultType="java.lang.String">
+        SELECT PASSWORD FROM ADMINMEMBER WHERE ID=#{id}
+    </select>
+
+
+    <insert id="productAdminInsert" parameterType="product">
+        INSERT INTO
+            PRODUCT(PRODUCTNAME,PRODUCTLOCATION,PRODUCTPRICE,
+                    PRODUCTCATEGORY,PRODUCTFILENAME,ID)
+        VALUES(#{productName},#{productOrigin},#{productPrice},
+               #{productCategory},#{fileName},#{id})
+    </insert>
+
+    <!--함수처럼 그냥 쿼리문 만들어놓기 -->
+    <sql id="productListSQL">
+        SELECT * FROM PRODUCT
+    </sql>
+
+    <select id="allProductList" resultType="product" resultMap="prodcutListID">
+        <include refid="productListSQL"></include>
+    </select>
+
+    <select id="prodcutList" parameterType="java.util.HashMap" resultType="product" resultMap="prodcutListID">
+        <include refid="productListSQL"></include>
+        <where>
+            ID=#{id}
+        </where>
+    </select>
+
+    <select id="productAdminInfo" parameterType="java.lang.Integer" resultType="product" resultMap="prodcutListID">
+        <include refid="productListSQL"></include>
+        <where>
+            NO=#{VALUE}
+        </where>
+    </select>
+    <!-- private int    no;
+    private String productName;
+    private String productOrigin;
+    private int productPrice;
+    private String productCategory;
+    private String fileName;
+    private String id;
+    private String seller;
+    private String regdate;
+    private String state; -->
+
+    <update id="productAdminUpdate" parameterType="product">
+        UPDATE PRODUCT
+        SET PRODUCTNAME=#{productName},PRODUCTLOCATION=#{productOrigin},
+        PRODUCTPRICE=#{productPrice},PRODUCTCATEGORY=#{productCategory}
+        <choose>
+            <when test="fileName!=null">
+                ,PRODUCTFILENAME=#{fileName}
+            </when>
+        </choose>
+        WHERE NO=#{no}
+    </update>
+
+    <delete id="productAdminDelete" parameterType="java.lang.Integer">
+        DELETE FROM PRODUCT WHERE NO=#{VALUE}
+    </delete>
+
+</mapper>
+
+
+
+
+
+
+
+
