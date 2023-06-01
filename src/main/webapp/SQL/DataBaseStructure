@@ -1,0 +1,24 @@
+# 로그인 DB
+create table ADMINMEMBER
+(
+    ID       varchar(10) not null
+        primary key,
+    PASSWORD varchar(10) not null,
+    NAME     varchar(20) null
+);
+
+# 제품 DB
+create table PRODUCT
+(
+    NO              int auto_increment
+        primary key,
+    PRODUCTNAME     varchar(50)                        not null,
+    PRODUCTLOCATION varchar(50)                        not null,
+    PRODUCTPRICE    int                                null,
+    PRODUCTCATEGORY varchar(50)                        null,
+    PRODUCTFILENAME varchar(100)                       null,
+    ID              varchar(10)                        null,
+    TODAY           datetime default CURRENT_TIMESTAMP null
+);
+
+
