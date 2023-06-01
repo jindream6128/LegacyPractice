@@ -12,21 +12,11 @@
     <link href="${pageContext.request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
-        /* private int    no;
-        private String productName;
-        private String productOrigin;
-        private int productPrice;
-        private String productCategory;
-        private String fileName;
-        private String id;
-        private String seller;
-        private String regdate; */
 
 
         $(function(){
             $("a.delete").click(function(){
-
-                document.location.href='${pageContext.request.contextPath}/productDelete?no='+this.lang
+                document.location.href='${pageContext.request.contextPath}/productDelete/'+this.lang
             });
             $("a.modify").click(function(){
                 //alert(this.lang);
@@ -70,7 +60,7 @@
                 </div>
                 <div class="contents">
                     <div class="btnSet clfix mgb15">
-						<span class="fr"> <span class="button"><a href="#">목록</a></span>
+						<span class="fr"> <span class="button"><a href="${pageContext.request.contextPath}/productList">목록</a></span>
 						</span>
                     </div>
 
@@ -125,8 +115,8 @@
                                         <td>${i.productName } </td>
                                         <td>${i.productPrice } </td>
                                         <td>
-                                            <span class="buttonFuc"><a href="#" class="modify" lang="${i.no}">수정</a></span><span
-                                                class="buttonFuc"><a href="#" class="delete" lang="${i.no}">삭제</a></span>
+                                            <span class="buttonFuc"><a class="modify" lang="${i.no}">수정</a></span>
+                                            <span class="buttonFuc"><a class="delete" lang="${i.no}">삭제</a></span>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -195,7 +185,7 @@
                         </div>
 
                         <p class="agr">
-                            <span class="button"><a href="#" id="save">저장</a></span>
+                            <span class="button"><a id="save">저장</a></span>
                         </p>
                     </div>
                 </div>

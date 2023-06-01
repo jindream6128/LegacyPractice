@@ -17,6 +17,11 @@ public class CartServiceImp implements CartService{
     private CartDao dao;
 
     @Override
+    public List<ProductDTO> allProductList() {
+        return dao.allProductList();
+    }
+
+    @Override
     public boolean idPassCheck(HashMap<String, Object> map) {
         // TODO Auto-generated method stub
         return dao.idPassCheck(map);
@@ -36,9 +41,9 @@ public class CartServiceImp implements CartService{
     }
 
     @Override
-    public void productAdminDelete(int no) {
+    public void productDelete(int no) {
         // TODO Auto-generated method stub
-        dao.productAdminDelete(no);
+        dao.productDelete(no);
     }
     @Override
     public List<ProductDTO> prodcutList(HashMap<String, Object> map) {

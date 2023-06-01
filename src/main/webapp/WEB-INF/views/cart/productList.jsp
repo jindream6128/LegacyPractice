@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
@@ -14,12 +15,25 @@
     <!-- <link href="${pageContext.request.contextPath}/resources/css/contents.css" rel="stylesheet" type="text/css" /> -->
     <link href="${pageContext.request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
 </head>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(function (){
+        let session_id = '${sessionScope.id}';
+        if(session_id == ''){
+            $("span#logout").hide();
+            $("span#add").hide();
+        }else{
+            $("span#login").hide();
+        }
+    })
+</script>
+
 <body>
 <div id="wrap">
     <!-- header -->
 
     <!--// header -->
-
+    <%--${sessionScope.id}--%>
     <div id="sub_container">
         <div id="contentsWrap" class="sub_con5">
             <div class="board_form">
@@ -29,7 +43,10 @@
 
                 <div class="contents">
                     <div class="btnSet clfix mgb15">
-						<span class="fr"> <span class="button"><a href="#">목록</a></span>
+						<span class="fr">
+                            <span class="button" id="logout"><a href="${pageContext.request.contextPath}/logout">로그아웃</a></span>
+                            <span class="button" id="add"><a href="${pageContext.request.contextPath}/productAdd">등록</a></span>
+                            <span class="button" id="login"><a href="${pageContext.request.contextPath}/login">로그인</a></span>
 						</span>
                     </div>
                     <form action="clientList.do" method="post">
@@ -93,17 +110,18 @@
                         <tbody>
 
                         <tr>
-
+                        <c:forEach var = "i" items="${productList}" varStatus="cnt">
                         <tr>
-                            <td>1</td>
-                            <td><a href="${pageContext.request.contextPath}/productInfo?no=1">노트북</a></td>
-                            <td>그림1</td>
-                            <td>미국</td>
-                            <td>7800</td>
-                            <td>전자</td>
-                            <td>2022/05/25</td>
-                            <td>이승윤</td>
+                            <td>${cnt.count}</td>
+                            <td>${i.productName}</td>
+                            <td><a href="${pageContext.request.contextPath}/productInfo?no=1"><img src = "${pageContext.request.contextPath}/resources/upload/${i.fileName}" width="50" height="50"/></a></td>
+                            <td>${i.productOrigin}</td>
+                            <td>${i.productPrice}</td>
+                            <td>${i.productCategory}</td>
+                            <td>${i.regdate}</td>
+                            <td>${i.id}</td>
                         </tr>
+                        </c:forEach>
                         </tr>
 
                         </tbody>

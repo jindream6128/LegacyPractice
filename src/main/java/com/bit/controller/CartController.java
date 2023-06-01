@@ -36,6 +36,12 @@ public class CartController {
         return "cart/adminLogin";
     }
 
+    @GetMapping("/logout")
+    public String logoutView(HttpSession session){
+        session.removeAttribute("id");
+        return "redirect:/productList";
+    }
+
     @PostMapping("/loginCheck")// 로그인처리
     public String loginCheckPro(@RequestParam(value = "id",required = true)String id,
                                 @RequestParam(value = "password",required = true)String password,String checker,
@@ -43,11 +49,11 @@ public class CartController {
         //쿠키....
         Cookie cookie=new Cookie("idCook", id);
         cookie.setMaxAge((checker!=null)?30:0);
-        System.out.println(checker+"checker");
-        System.out.println(cookie.getMaxAge()+"maxAge");
+       // System.out.println(checker+"checker");
+       // System.out.println(cookie.getMaxAge()+"maxAge");
         response.addCookie(cookie);
 
-        //
+
         HashMap<String, Object>map=new HashMap<String, Object>();
         map.put("id", id);
         map.put("password", password);
@@ -59,12 +65,27 @@ public class CartController {
         return "redirect:/login";
     }
     @GetMapping("/productList")
-    public String productListProcess(HttpSession session,Model model) {
+    public String productListProcess(Model model) {
+        //HttpSession session,
+        //HashMap<String, Object>map=new HashMap<String, Object>();
+        //map.put("id",session.getAttribute("id"));
+
+        //model.addAttribute("productList", cartService.prodcutList(map));
+        model.addAttribute("productList",cartService.allProductList());
+        return "cart/productList";
+    }
+
+    @GetMapping("/productAdd")
+    public String productaddProcess(HttpSession session,Model model){
+
         HashMap<String, Object>map=new HashMap<String, Object>();
         map.put("id",session.getAttribute("id"));
+
         model.addAttribute("productList", cartService.prodcutList(map));
         return "cart/productAdd";
     }
+
+
     @PostMapping(value = "productInsert")
     public String productAddProcess(ProductDTO dto,@RequestParam(value = "file", required = false)
     MultipartFile file) {
@@ -89,8 +110,11 @@ public class CartController {
         }else {
             cartService.productAdminUpdate(dto);
         }
-        return "redirect:productList";
+
+        return "redirect:productAdd";
     }
+
+
     @RequestMapping(value ="clientProdcutList")
     public String clientListProcess() {
         System.out.println("clientProdcutList");
@@ -111,10 +135,12 @@ public class CartController {
     public ProductDTO productUpdate(@RequestParam("no")int no) {
         return  cartService.productAdminInfo(no);
     }
+
     @GetMapping("/productDelete/{no}")
     public String productDeleteProcess(@PathVariable("no")int no) {
         System.out.println("no===="+no);
-        return "redirect:productList";
+        cartService.productDelete(no);
+        return "redirect:/productAdd";
     }
 }
 

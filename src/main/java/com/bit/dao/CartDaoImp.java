@@ -14,6 +14,12 @@ public class CartDaoImp implements CartDao {
     @Autowired
     private SqlSessionTemplate sqlSession;
     static String nameSpace="com.bit.dto.cartMapper.";
+
+    @Override
+    public List<ProductDTO> allProductList() {
+        return sqlSession.selectList(nameSpace+"allProductList");
+    }
+
     @Override
     public boolean idPassCheck(HashMap<String, Object> map) {
         // TODO Auto-generated method stub
@@ -33,7 +39,7 @@ public class CartDaoImp implements CartDao {
     }
 
     @Override
-    public void productAdminDelete(int no) {
+    public void productDelete(int no) {
         // TODO Auto-generated method stub
         sqlSession.delete(nameSpace+"productAdminDelete", no);
     }
