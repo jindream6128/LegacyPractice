@@ -73,8 +73,8 @@
                                     </select>
                                 </th>
                                 <td><input type="text" name="data" style="border:1px solid #ddd; height:20px;" class="inputText" size="30" />
-                                    <span class="button"><a href="#" id="search">검색</a></span>
-                                    <span class="button"><a href="clientList.do" id="search">새로고침</a></span>
+                                    <span class="button"><a id="search">검색</a></span>
+                                    <span class="button"><a href="/productList">새로고침</a></span>
 
                                 </td>
                             </tr>
@@ -114,7 +114,7 @@
                         <tr>
                             <td>${cnt.count}</td>
                             <td>${i.productName}</td>
-                            <td><a href="${pageContext.request.contextPath}/productInfo?no=1"><img src = "${pageContext.request.contextPath}/resources/upload/${i.fileName}" width="50" height="50"/></a></td>
+                            <td><a href="${pageContext.request.contextPath}/productInfo/${i.no}/${cnt.count}"><img src = "${pageContext.request.contextPath}/resources/upload/${i.fileName}" width="50" height="50"/></a></td>
                             <td>${i.productOrigin}</td>
                             <td>${i.productPrice}</td>
                             <td>${i.productCategory}</td>

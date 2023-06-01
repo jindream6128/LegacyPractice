@@ -14,6 +14,8 @@ public interface CartService {
     public List<ProductDTO>prodcutList(HashMap<String, Object>map);
     //전체 리스트 불러오기
     public List<ProductDTO> allProductList();
+    //상세보기 -> 해당하는 게시글의 번호로 해당 글들의 정보 보기
+    public ProductDTO productInfo(int no);
     /////////////////////////////////////////////
 
 
@@ -23,8 +25,7 @@ public interface CartService {
     // 데이터 modify 하기 -> 근데 이거 아직 구현 안된거 같음
     public void productAdminUpdate(ProductDTO dto);
 
-    //상세보기 -> 해당하는 게시글의 번호로 해당 글들의 정보 보기
-    public ProductDTO productAdminInfo(int no);
+
 
     //전체 데이터 리스트 뽑아내기
 }

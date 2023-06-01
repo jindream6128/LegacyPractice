@@ -30,8 +30,8 @@
 						<span class="fr">
 
                             <span class="button"><a href="#">물품구매</a></span>
-							<span class="button"> <a href="${pageContext.request.contextPath}/cartAdd?no=1">장바구니</a></span>
-							<span class="button"><a href="#">목록</a></span>
+							<span class="button"> <a href="${pageContext.request.contextPath}/cartAdd/${list.no}">장바구니</a></span>
+							<span class="button"><a href="/productList">목록</a></span>
 						</span>
                     </div>
                     <table class="bbsList">
@@ -43,33 +43,33 @@
                         <tr>
                             <th scope="col" class="fir">이미지</th>
                             <th scope="col">글번호</th>
-                            <td>1</td>
+                            <td>${cnt_no}</td>
                         </tr>
                         <tr>
 
-                            <td class="fir" rowspan="7"><img src="/kr/CartUp/" width="400" height="300"/></td>
+                            <td class="fir" rowspan="7"><img src = "${pageContext.request.contextPath}/resources/upload/${list.fileName}" width="400" height="300"/></td>
                             <th scope="col">아이디</th>
-                            <td></td>
+                            <td>${list.id}</td>
                         </tr>
                         <tr>
                             <th scope="col">상품이름</th>
-                            <td></td>
+                            <td>${list.productName}</td>
                         </tr>
                         <tr>
                             <th scope="col">가격</th>
-                            <td></td>
+                            <td>${list.productPrice}</td>
                         </tr>
                         <tr>
                             <th scope="col">원산지</th>
-                            <td></td>
+                            <td>${list.productOrigin}</td>
                         </tr>
                         <tr>
                             <th scope="col">카테고리</th>
-                            <td></td>
+                            <td>${list.productCategory}</td>
                         </tr>
                         <tr>
                             <th scope="col">등록일</th>
-                            <td></td>
+                            <td>${list.regdate}</td>
                         </tr>
                     </table>
 

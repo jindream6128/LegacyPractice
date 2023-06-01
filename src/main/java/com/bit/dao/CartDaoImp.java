@@ -48,11 +48,9 @@ public class CartDaoImp implements CartDao {
         // TODO Auto-generated method stub
         return sqlSession.selectList(nameSpace+"prodcutList",map);
     }
+
     @Override
-    public ProductDTO productAdminInfo(int no) {
-        // TODO Auto-generated method stub
-        return sqlSession.selectOne(nameSpace+"productAdminInfo",no);
+    public ProductDTO productInfo(int no) {
+        return sqlSession.selectOne(nameSpace+"productInfo",no);
     }
-
-
 }

@@ -54,12 +54,7 @@ private int    no;
         </where>
     </select>
 
-    <select id="productAdminInfo" parameterType="java.lang.Integer" resultType="product" resultMap="prodcutListID">
-        <include refid="productListSQL"></include>
-        <where>
-            NO=#{VALUE}
-        </where>
-    </select>
+
     <!-- private int    no;
     private String productName;
     private String productOrigin;
@@ -86,6 +81,14 @@ private int    no;
     <delete id="productAdminDelete" parameterType="java.lang.Integer">
         DELETE FROM PRODUCT WHERE NO=#{VALUE}
     </delete>
+
+    <select id="productInfo" parameterType="java.lang.Integer" resultType="product" resultMap="prodcutListID">
+        <include refid="productListSQL"></include>
+        <where>
+            no=#{no}
+        </where>
+    </select>
+
 
 </mapper>
 

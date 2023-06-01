@@ -115,32 +115,31 @@ public class CartController {
     }
 
 
-    @RequestMapping(value ="clientProdcutList")
-    public String clientListProcess() {
-        System.out.println("clientProdcutList");
-        return "cart/productList";
-    }
-    @GetMapping("/productInfo")
-    public String productInfoProcess(int no) {
-        System.out.println("productInfo");
-        return "cart/productInfo";
-    }
+
+
     @GetMapping(value = "cartAdd")
     public String cartAddProcess() {
         System.out.println("cartAddProcess");
         return "cart/cartList";
     }
-    @PostMapping(value = "ajaxModify")
+   /* @PostMapping(value = "ajaxModify")
     @ResponseBody
     public ProductDTO productUpdate(@RequestParam("no")int no) {
         return  cartService.productAdminInfo(no);
     }
-
+*/
     @GetMapping("/productDelete/{no}")
     public String productDeleteProcess(@PathVariable("no")int no) {
         System.out.println("no===="+no);
         cartService.productDelete(no);
         return "redirect:/productAdd";
+    }
+    @GetMapping("/productInfo/{no}/{cnt_no}")
+    public String productInfoProcess(@PathVariable("no")int no,@PathVariable("cnt_no")int cnt_no, Model model){
+        //해당 게시글 번호의 데이터 가져오기
+        model.addAttribute("list", cartService.productInfo(no));
+        model.addAttribute("cnt_no",cnt_no);
+        return "cart/productInfo";
     }
 }
 

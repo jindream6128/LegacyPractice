@@ -52,11 +52,7 @@ public class CartServiceImp implements CartService{
     }
 
     @Override
-    public ProductDTO productAdminInfo(int no) {
-        // TODO Auto-generated method stub
-        return dao.productAdminInfo(no);
+    public ProductDTO productInfo(int no) {
+        return dao.productInfo(no);
     }
-
-
-
 }
