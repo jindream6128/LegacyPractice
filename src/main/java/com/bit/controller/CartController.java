@@ -2,11 +2,13 @@ package com.bit.controller;
 
 import java.io.FileOutputStream;
 import java.util.HashMap;
+import java.util.stream.DoubleStream;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bit.dto.BasketDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -138,8 +140,45 @@ public class CartController {
     public String productInfoProcess(@PathVariable("no")int no,@PathVariable("cnt_no")int cnt_no, Model model){
         //해당 게시글 번호의 데이터 가져오기
         model.addAttribute("list", cartService.productInfo(no));
+        //no <- 이게 실질적인 제품 번호 ~! cnt_no <- 이거는 상품의 갯수
         model.addAttribute("cnt_no",cnt_no);
         return "cart/productInfo";
+    }
+
+    //장바구니 누르면 장바구니 userid랑 상품번호 db에넣기
+    @GetMapping("/basket/{no}/{id}")
+    public String basketProcess(@PathVariable("no")int no, @PathVariable("id")String id, Model model){
+        //no는 실질적인 제품의 번호이다
+
+        BasketDTO basketDTO = new BasketDTO(id,no);
+        if(cartService.checkBasketdata(basketDTO)){
+            //true이면 데이터가 없다
+            cartService.addBasket(basketDTO);
+        }else{
+            //그렇지 않으면 cnt를 update해라
+            cartService.upcntBasket(basketDTO);
+        }
+        //System.out.println(cartService.selectBasketAll(basketDTO));
+       //model.addAttribute("list",cartService.selectBasketAll(id));
+        return "redirect:/gocartList";
+    }
+
+    //상품 번호랑 로그인되어 있는 아이디만 가지고오면 해당 상품을 장바구니에서 삭제할수 있음
+    @GetMapping("/cartdelete/{no}/{id}")
+    public String cartdelete(@PathVariable("no")int no, @PathVariable("id")String id){
+        //no 는  product no
+        //id 는 로그인되어있는 user id
+
+        cartService.deleteBasketproduct(new BasketDTO(id,no));
+        return "redirect:/gocartList";
+    }
+
+    @GetMapping("/gocartList")
+    public String goCartList(Model model,HttpSession session){
+        String id = (String) session.getAttribute("id");
+
+        model.addAttribute("list",cartService.selectBasketAll(id));
+        return "cart/cartList";
     }
 }
 

@@ -3,6 +3,7 @@ package com.bit.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.bit.dto.BasketDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +55,30 @@ public class CartServiceImp implements CartService{
     @Override
     public ProductDTO productInfo(int no) {
         return dao.productInfo(no);
+    }
+
+    @Override
+    public void addBasket(BasketDTO basketDTO) {
+        dao.addBasket(basketDTO);
+    }
+
+    @Override
+    public boolean checkBasketdata(BasketDTO basketDTO) {
+        return dao.checkBasketdata(basketDTO);
+    }
+
+    @Override
+    public void upcntBasket(BasketDTO basketDTO) {
+        dao.upcntBasket(basketDTO);
+    }
+
+    @Override
+    public List<ProductDTO> selectBasketAll(String id) {
+        return dao.selectBasketAll(id);
+    }
+
+    @Override
+    public void deleteBasketproduct(BasketDTO basketDTO) {
+        dao.deleteBasketproduct(basketDTO);
     }
 }

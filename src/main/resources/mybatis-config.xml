@@ -8,6 +8,7 @@
 		<typeAliases>
 
 			<typeAlias type="com.bit.dto.ProductDTO" alias="product"/>
+			<typeAlias type="com.bit.dto.BasketDTO" alias="basket"/>
 
 
 		</typeAliases>

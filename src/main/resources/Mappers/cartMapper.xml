@@ -45,6 +45,7 @@ private int    no;
 
     <select id="allProductList" resultType="product" resultMap="prodcutListID">
         <include refid="productListSQL"></include>
+        ORDER BY today desc
     </select>
 
     <select id="prodcutList" parameterType="java.util.HashMap" resultType="product" resultMap="prodcutListID">
@@ -89,6 +90,27 @@ private int    no;
         </where>
     </select>
 
+    <insert id="addBasket" parameterType="basket">
+        INSERT INTO BASKET(USERID,PRODUCTNO) VALUES (#{USERID},#{PRODUCTNO})
+    </insert>
+
+
+    <select id="checkBasketdata" parameterType="basket" resultType="java.lang.String">
+        select BASKETNO from BASKET where USERID = #{USERID} and PRODUCTNO = #{PRODUCTNO}
+    </select>
+
+    <update id="upcntBasket" parameterType="basket">
+        update  BASKET set PRODUCTCOUNT = PRODUCTCOUNT + 1 where userid = #{USERID} and PRODUCTNO = #{PRODUCTNO}
+    </update>
+    
+    <select id="selectBasketAll" parameterType="java.lang.String" resultType="product" resultMap="prodcutListID">
+        select * from PRODUCT where no in(
+            select PRODUCTNO from BASKET where USERID = #{USERID}) order by TODAY DESC;
+    </select>
+
+    <delete id="deleteBasketproduct" parameterType="basket">
+        DELETE FROM Basket where USERID =#{USERID} and PRODUCTNO = #{PRODUCTNO}
+    </delete>
 
 </mapper>
 

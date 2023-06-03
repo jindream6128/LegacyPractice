@@ -21,4 +21,12 @@ create table PRODUCT
     TODAY           datetime default CURRENT_TIMESTAMP null
 );
 
+# 장바구니 DB
+create table BASKET
+(
+    BASKETNO int auto_increment primary key,
+    USERID varchar(10),
+    PRODUCTNO int,
+    PRODUCTCOUNT int default 1
+);
 

@@ -3,6 +3,7 @@ package com.bit.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.bit.dto.BasketDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -52,5 +53,39 @@ public class CartDaoImp implements CartDao {
     @Override
     public ProductDTO productInfo(int no) {
         return sqlSession.selectOne(nameSpace+"productInfo",no);
+    }
+
+    @Override
+    public void addBasket(BasketDTO basketDTO) {
+        sqlSession.insert(nameSpace+"addBasket", basketDTO);
+    }
+
+
+    @Override
+    public boolean checkBasketdata(BasketDTO basketDTO) {
+        Boolean chk =true;
+        String no = sqlSession.selectOne(nameSpace+"checkBasketdata", basketDTO);
+        //null 일때만 insert해라
+        if(no == null){
+            chk = true;
+        }else{
+            chk = false;
+        }
+        return chk;
+    }
+
+    @Override
+    public void upcntBasket(BasketDTO basketDTO) {
+        sqlSession.update(nameSpace+"upcntBasket",basketDTO);
+    }
+
+    @Override
+    public List<ProductDTO> selectBasketAll(String id) {
+        return sqlSession.selectList(nameSpace+"selectBasketAll", id);
+    }
+
+    @Override
+    public void deleteBasketproduct(BasketDTO basketDTO) {
+        sqlSession.delete(nameSpace+"deleteBasketproduct",basketDTO);
     }
 }

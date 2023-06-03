@@ -83,14 +83,14 @@
                     </form>
                     <table class="bbsList">
                         <colgroup>
-                            <col width="80" />
+                            <col width="50" />
                             <col width="170" />
                             <col width="170" />
                             <col width="170" />
                             <col width="170" />
                             <col width="170" />
-                            <col width="170" />
-                            <col width="170" />
+                            <col width="200" />
+                            <col width="150" />
                         </colgroup>
                         <thead>
 

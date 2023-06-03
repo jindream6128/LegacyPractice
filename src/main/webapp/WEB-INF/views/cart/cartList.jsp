@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 
@@ -31,7 +32,7 @@
 				<div class="contents">
 
 					<div class="btnSet clfix mgb15">
-						<span class="fr"> <span class="button"><a href="">목록</a></span>
+						<span class="fr"> <span class="button"><a href="/productList">목록</a></span>
 						</span>
 					</div>
 
@@ -57,18 +58,21 @@
 					</table>
 					<table class="bbsList">
 						<colgroup>
-							<col width="80" />
+							<col width="50"/>
+							<col width="50" />
 							<col width="170" />
 							<col width="170" />
+							<col width="150" />
 							<col width="170" />
 							<col width="170" />
-							<col width="170" />
-							<col width="170" />
-							<col width="170" />
+							<col width="200" />
+							<col width="50" />
+							<col width="150" />
 						</colgroup>
 						<thead>
 
 						<tr>
+							<th scope="col"><input id ="checkBox_all" type="checkbox"/></th>
 							<th scope="col">NO.</th>
 							<th scope="col">상품명</th>
 							<th scope="col">이미지</th>
@@ -76,30 +80,37 @@
 							<th scope="col">가격</th>
 							<th scope="col">종류</th>
 							<th scope="col">날짜</th>
+							<th scope="col">갯수</th>
 							<th scope="col">상태</th>
 						</tr>
 						</thead>
+
+
 						<tbody>
-						<tr>
-							<td> </td>
+						<!--여기 foreach 넣어야 하나?-->
+						<c:forEach var="i" items="${list}" varStatus="cnt">
+
+								<%--체크하면 프로덕트 no가 선택이 된다--%>
+							<td><input type="checkbox" value="${i.no}" name = "productcheckbox"/></td>
+							<td>${cnt.count}</td>
+							<td>${i.productName}</td>
 							<td>
-							</td>
+								<a href="${pageContext.request.contextPath}/productInfo/${i.no}/${cnt.count}"><img src="${pageContext.request.contextPath}/resources/upload/${i.fileName}" width="50" height="50"/></a></td>
+							<td>${i.productOrigin}</td>
+							<td>${i.productPrice}</td>
+							<td>${i.productCategory}</td>
+							<td>${i.regdate}</td>
+							<td>상품 갯수가 필요한데..</td>
 							<td>
-								<a href=""><img src="" width="50" height="50"></img></a></td>
-							<td></td>
-							<td>
-							</td>
-							<td></td>
-							<td></td>
-							<td>
-										<span class="buttonFuc"><a href="#">구매</a>
-										</span>
+										<span class="buttonFuc"><a href="#">구매</a></span>
 								<span class="buttonFuc">
-										
-											<a href="">삭제</a></span>
+									<a href="${pageContext.request.contextPath}/cartdelete/${i.no}/${sessionScope.id}">삭제</a></span>
 							</td>
 						</tr>
+						</c:forEach>
+
 						</tbody>
+
 					</table>
 					<table class="bbsList" align="right">
 						<tr align="right">

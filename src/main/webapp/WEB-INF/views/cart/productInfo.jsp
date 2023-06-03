@@ -30,7 +30,7 @@
 						<span class="fr">
 
                             <span class="button"><a href="#">물품구매</a></span>
-							<span class="button"> <a href="${pageContext.request.contextPath}/cartAdd/${list.no}">장바구니</a></span>
+							<span class="button"> <a href="${pageContext.request.contextPath}/basket/${list.no}/${sessionScope.id}">장바구니</a></span>
 							<span class="button"><a href="/productList">목록</a></span>
 						</span>
                     </div>

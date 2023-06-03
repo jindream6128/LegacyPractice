@@ -3,6 +3,7 @@ package com.bit.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.bit.dto.BasketDTO;
 import com.bit.dto.ProductDTO;
 
 public interface CartDao {
@@ -17,6 +18,17 @@ public interface CartDao {
     //상세보기 -> 해당하는 게시글의 번호로 해당 글들의 정보 보기
     public ProductDTO productInfo(int no);
 
+    //장바구니
+    //인설트 전에 데이터가 있는지 확인하기
+    public boolean checkBasketdata(BasketDTO basketDTO);
+    //장바구니에 id 상품번호 넣기
+    public void addBasket(BasketDTO basketDTO);
+    //insert된거 누르면 update하기
+    public void upcntBasket(BasketDTO basketDTO);
+    //아이디에 해당하는 장바구니 데이터 조회하기
+    public List<ProductDTO> selectBasketAll(String id);
+    //장바구니에서 지우기
+    public void deleteBasketproduct(BasketDTO basketDTO);
     /////////////////////////////////////////////
 
     //해당하는 번호에 해당하는 게시글 삭제하기
