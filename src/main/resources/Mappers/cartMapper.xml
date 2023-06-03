@@ -104,8 +104,13 @@ private int    no;
     </update>
     
     <select id="selectBasketAll" parameterType="java.lang.String" resultType="product" resultMap="prodcutListID">
-        select * from PRODUCT where no in(
-            select PRODUCTNO from BASKET where USERID = #{USERID}) order by TODAY DESC;
+        SELECT P.no, P.productname, P.productlocation, P.productprice, P.productcategory, P.productfilename, P.id, P.today, B.productCount
+        FROM PRODUCT AS P
+                 INNER JOIN
+             BASKET AS B
+        WHERE P.no = B.PRODUCTNO
+          and B.USERID=#{id}
+        ORDER BY TODAY DESC;
     </select>
 
     <delete id="deleteBasketproduct" parameterType="basket">

@@ -18,6 +18,8 @@ public class ProductDTO {
     private String regdate;
     private String state;
 
+    //갯수 받아오기 위해서
+    private int productcount;
 
 
     public ProductDTO() {

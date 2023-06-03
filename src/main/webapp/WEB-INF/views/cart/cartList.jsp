@@ -4,6 +4,37 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html >
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(function(){
+		$('input#checkBox_all').click(selectCheckAll);
+		$('input[name=productcheckbox]').click(calculatePrice);
+	})
+
+	function selectCheckAll(){
+		if($('input#checkBox_all').is(':checked')){
+			$('input[name=productcheckbox]').prop('checked',true);
+		}else{
+			$('input[name=productcheckbox]').prop('checked',false);
+		}
+
+		calculatePrice();
+	}
+
+	//계산하기.. 총합..
+	function calculatePrice(){
+		//뿌리는 전체 리스트의 사이즈
+		let listsize = ${listsize};
+		//console.log(listsize)
+		let totalprice = 0;
+
+		for(let i =0; i < listsize; i++) {
+			if($('input[name=productcheckbox]').is(':checked')){
+				console.log("test");
+			}
+		}
+	}
+</script>
 <head>
 
 	<title>관리자</title>
@@ -72,7 +103,7 @@
 						<thead>
 
 						<tr>
-							<th scope="col"><input id ="checkBox_all" type="checkbox"/></th>
+							<th scope="col"><input id ="checkBox_all" type="checkbox" /></th>
 							<th scope="col">NO.</th>
 							<th scope="col">상품명</th>
 							<th scope="col">이미지</th>
@@ -91,16 +122,16 @@
 						<c:forEach var="i" items="${list}" varStatus="cnt">
 
 								<%--체크하면 프로덕트 no가 선택이 된다--%>
-							<td><input type="checkbox" value="${i.no}" name = "productcheckbox"/></td>
+							<td><input type="checkbox" value="${i.no}" name="productcheckbox"/></td>
 							<td>${cnt.count}</td>
 							<td>${i.productName}</td>
 							<td>
 								<a href="${pageContext.request.contextPath}/productInfo/${i.no}/${cnt.count}"><img src="${pageContext.request.contextPath}/resources/upload/${i.fileName}" width="50" height="50"/></a></td>
 							<td>${i.productOrigin}</td>
-							<td>${i.productPrice}</td>
+							<td><span id="itemproduct"/>${i.productPrice}</td>
 							<td>${i.productCategory}</td>
 							<td>${i.regdate}</td>
-							<td>상품 갯수가 필요한데..</td>
+							<td>${i.productcount}</td>
 							<td>
 										<span class="buttonFuc"><a href="#">구매</a></span>
 								<span class="buttonFuc">

@@ -176,7 +176,7 @@ public class CartController {
     @GetMapping("/gocartList")
     public String goCartList(Model model,HttpSession session){
         String id = (String) session.getAttribute("id");
-
+        model.addAttribute("listsize",cartService.selectBasketAll(id).size());
         model.addAttribute("list",cartService.selectBasketAll(id));
         return "cart/cartList";
     }
