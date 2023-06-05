@@ -124,12 +124,13 @@ public class CartController {
         System.out.println("cartAddProcess");
         return "cart/cartList";
     }
-   /* @PostMapping(value = "ajaxModify")
+
+    @PostMapping(value = "ajaxModify")
     @ResponseBody
     public ProductDTO productUpdate(@RequestParam("no")int no) {
-        return  cartService.productAdminInfo(no);
+        return  cartService.productInfo(no);
     }
-*/
+
     @GetMapping("/productDelete/{no}")
     public String productDeleteProcess(@PathVariable("no")int no) {
         System.out.println("no===="+no);

@@ -23,16 +23,22 @@
 
 	//계산하기.. 총합..
 	function calculatePrice(){
+		let sum =0
 		//뿌리는 전체 리스트의 사이즈
 		let listsize = ${listsize};
 		//console.log(listsize)
 		let totalprice = 0;
 
-		for(let i =0; i < listsize; i++) {
-			if($('input[name=productcheckbox]').is(':checked')){
-				console.log("test");
+		for(let i =1; i <= listsize; i++) {
+			//체크박스 아이디임
+			let tmp = '#'+i;
+			let price = '#'+i+'productprice';
+			if($(tmp).is(':checked')){
+				//console.log($(price).text());
+				sum += Number($(price).text());
 			}
 		}
+		$('input#total').val(sum);
 	}
 </script>
 <head>
@@ -121,23 +127,23 @@
 						<!--여기 foreach 넣어야 하나?-->
 						<c:forEach var="i" items="${list}" varStatus="cnt">
 
-								<%--체크하면 프로덕트 no가 선택이 된다--%>
-							<td><input type="checkbox" value="${i.no}" name="productcheckbox"/></td>
+							<%--체크하면 프로덕트 no가 선택이 된다--%>
+							<td><input type="checkbox" value="${i.no}" name="productcheckbox" id="${cnt.count}"/></td>
 							<td>${cnt.count}</td>
 							<td>${i.productName}</td>
 							<td>
 								<a href="${pageContext.request.contextPath}/productInfo/${i.no}/${cnt.count}"><img src="${pageContext.request.contextPath}/resources/upload/${i.fileName}" width="50" height="50"/></a></td>
 							<td>${i.productOrigin}</td>
-							<td><span id="itemproduct"/>${i.productPrice}</td>
+							<td id="${cnt.count}productprice">${i.productPrice}</td>
 							<td>${i.productCategory}</td>
 							<td>${i.regdate}</td>
 							<td>${i.productcount}</td>
 							<td>
-										<span class="buttonFuc"><a href="#">구매</a></span>
+								<span class="buttonFuc"><a href="#">구매</a></span>
 								<span class="buttonFuc">
 									<a href="${pageContext.request.contextPath}/cartdelete/${i.no}/${sessionScope.id}">삭제</a></span>
 							</td>
-						</tr>
+							</tr>
 						</c:forEach>
 
 						</tbody>
@@ -145,7 +151,7 @@
 					</table>
 					<table class="bbsList" align="right">
 						<tr align="right">
-							<th align="right">총합계 &nbsp; <input type="text" name="total" id="total" class="inputText" size="30"  align="right" value="0"/></th>
+							<th align="right">총합계 &nbsp; <input type="text" name="total" id="total" class="inputText" size="30"  align="right" /></th>
 						</tr>
 					</table>
 				</div>
