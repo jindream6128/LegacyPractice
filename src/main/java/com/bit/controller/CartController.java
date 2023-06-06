@@ -38,6 +38,11 @@ public class CartController {
         return "cart/adminLogin";
     }
 
+    @GetMapping("/gosignup")
+    public String gosignin(){
+        return "cart/signup";
+    }
+
     @GetMapping("/logout")
     public String logoutView(HttpSession session){
         session.removeAttribute("id");

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.bit.dto.BasketDTO;
 import com.bit.dto.ProductDTO;
+import com.bit.dto.SignupDTO;
 
 import javax.servlet.http.HttpSession;
 
@@ -47,8 +48,9 @@ public interface CartService {
     public void productDelete(int no);
 
 
-
-
-
-    //전체 데이터 리스트 뽑아내기
+    ////////////////////////////////
+    //회원가입 전 중복 아이디 체크
+    public String idDuplicationchk(String id);
+    //회원가입
+    public void signup(SignupDTO signupDTO);
 }

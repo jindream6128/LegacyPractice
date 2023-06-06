@@ -40,9 +40,12 @@
                     <img id="btnSubmit" src="${pageContext.request.contextPath}/resources/login/img/button/btn_login.gif" alt="LOGIN" title="LOGIN"  />
                 </div>
 
+
                 <div class="saveId"><input type="checkbox" id="checker" name="checker" />
                     <img src="${pageContext.request.contextPath}/resources/login/img/common/save_id.gif" alt="아이디 저장" />
+                    <a href="/gosignup">&emsp;&emsp;회원가입</a>
                 </div>
+
             </fieldset>
         </div>
     </div>

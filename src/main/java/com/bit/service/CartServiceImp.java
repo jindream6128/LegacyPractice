@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.bit.dto.BasketDTO;
+import com.bit.dto.SignupDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -90,5 +91,17 @@ public class CartServiceImp implements CartService{
     @Override
     public List<ProductDTO> cartSearchProduct(HashMap<String, String> map) {
         return dao.cartSearchProduct(map);
+    }
+
+    ///////////////
+
+    @Override
+    public String idDuplicationchk(String id) {
+        return dao.idDuplicationchk(id);
+    }
+
+    @Override
+    public void signup(SignupDTO signupDTO) {
+        dao.signup(signupDTO);
     }
 }

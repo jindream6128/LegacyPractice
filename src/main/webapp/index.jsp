@@ -10,5 +10,6 @@
 <br/>
 <a href="hello-servlet">Hello Servlet</a> <br>
 <h1><a href="${pageContext.request.contextPath}/login">Go - Login</a></h1>
+<h1><a href="${pageContext.request.contextPath}/signup">test</a> </h1>
 </body>
 </html>

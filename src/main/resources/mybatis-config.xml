@@ -9,7 +9,7 @@
 
 			<typeAlias type="com.bit.dto.ProductDTO" alias="product"/>
 			<typeAlias type="com.bit.dto.BasketDTO" alias="basket"/>
-
+			<typeAlias type="com.bit.dto.SignupDTO" alias="signup"/>
 
 		</typeAliases>
 

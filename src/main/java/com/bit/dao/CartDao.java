@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.bit.dto.BasketDTO;
 import com.bit.dto.ProductDTO;
+import com.bit.dto.SignupDTO;
 
 public interface CartDao {
     // 로그인 id pass 체크
@@ -40,11 +41,11 @@ public interface CartDao {
     //해당하는 번호에 해당하는 게시글 삭제하기
     public void productDelete(int no);
 
-
-
-
-    //전체 데이터 리스트 뽑아내기
-
+    ////////////////////////////////
+    //회원가입 전 중복 아이디 체크
+    public String idDuplicationchk(String id);
+    //회원가입
+    public void signup(SignupDTO signupDTO);
 
 
 }

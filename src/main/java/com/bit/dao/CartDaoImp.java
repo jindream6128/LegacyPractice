@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.bit.dto.BasketDTO;
+import com.bit.dto.SignupDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,7 @@ public class CartDaoImp implements CartDao {
     @Autowired
     private SqlSessionTemplate sqlSession;
     static String nameSpace="com.bit.dto.cartMapper.";
+    static String userNameSpace = "com.bit.dto.userMapper.";
 
     @Override
     public List<ProductDTO> allProductList() {
@@ -97,5 +99,17 @@ public class CartDaoImp implements CartDao {
     @Override
     public List<ProductDTO> cartSearchProduct(HashMap<String, String> map) {
         return sqlSession.selectList(nameSpace+"cartlistSearch",map);
+    }
+
+    ///////////////
+
+    @Override
+    public String idDuplicationchk(String id) {
+        return sqlSession.selectOne(userNameSpace+"idDuplicationchk",id);
+    }
+
+    @Override
+    public void signup(SignupDTO signupDTO) {
+        sqlSession.insert(userNameSpace+"signup",signupDTO);
     }
 }

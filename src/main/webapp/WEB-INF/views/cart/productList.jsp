@@ -21,17 +21,7 @@
         })
     });
 <!--  관리자페이지 구현 X  -->
-</script>
-        <title>관리자</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=10"/>
-        <meta http-equiv="imagetoolbar" content="no"/>
-        <!-- <link href="${pageContext.request.contextPath}/resources/css/contents.css" rel="stylesheet" type="text/css" /> -->
-        <link href="${pageContext.request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css"/>
-        </head>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(function () {
+    $(function () {
             let session_id = '${sessionScope.id}';
             if (session_id == '') {
                 $("span#logout").hide();
@@ -41,6 +31,15 @@
             }
         })
     </script>
+        <title>관리자</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=10"/>
+        <meta http-equiv="imagetoolbar" content="no"/>
+        <!-- <link href="${pageContext.request.contextPath}/resources/css/contents.css" rel="stylesheet" type="text/css" /> -->
+        <link href="${pageContext.request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css"/>
+        </head>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
 <body>
 <div id="wrap">
