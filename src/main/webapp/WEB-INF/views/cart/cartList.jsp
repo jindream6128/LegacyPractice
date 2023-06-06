@@ -6,21 +6,22 @@
 <html >
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
+	$(function () {
+		$('#search').click(function (){
+			let searchvalue = $('input#searchdata')
+			if(searchvalue.length === 0){
+				alert("검색할 데이터를 입력해 주세요")
+				return false;
+			}
+			$('form#cartListSearch').submit();
+		})
+	});
+
 	$(function(){
 		$('input#checkBox_all').click(selectCheckAll);
 		$('input[name=productcheckbox]').click(calculatePrice);
 	})
 
-/*	function checkselectCheckAll(){
-		let listsize = ${listsize}; //돌아야할 for문의 횟수
-		for(let i = 0; i<listsize; i++){
-			let tmp = '#'+i;
-			if(!$(tmp).is(':checked')){
-				$('input#checkBox_all').prop('checked',false);
-				return;
-			}
-		}
-	}*/
 
 	function selectCheckAll(){
 		if($('input#checkBox_all').is(':checked')){
@@ -45,13 +46,16 @@
 			//체크박스 아이디임
 			let tmp = '#'+i;
 			let price = '#'+i+'productprice';
+			let productcnt = '#product' + i;
 			if($(tmp).is(':checked')){
 				//console.log($(price).text());
-				sum += Number($(price).text());
+				sum += Number($(price).text()) * Number($(productcnt).text());
 			}
 		}
 		$('input#total').val(sum);
 	}
+
+
 </script>
 <head>
 
@@ -102,8 +106,17 @@
 								</select>
 							</td>
 							<th>상품명</th>
-							<td><input type="text" name="" class="" size="30" style="border:1px solid #ddd; height:20px;"/>
-								<span class="button"><a href="#">검색</a></span></td>
+							<form id="cartListSearch" action="/cartListSearch" method="post">
+							<td>
+								<input type="text" name="cartlistquery" id="searchdata" size="30" style="border:1px solid #ddd; height:20px;"/>
+								<span class="button">
+									<a id="search" >검색</a>
+								</span>
+							</td>
+								<td>
+									<span class="button"><a href="/gocartList">새로고침</a> </span>
+								</td>
+							</form>
 						</tr>
 						</tbody>
 					</table>
@@ -151,7 +164,7 @@
 							<td id="${cnt.count}productprice">${i.productPrice}</td>
 							<td>${i.productCategory}</td>
 							<td>${i.regdate}</td>
-							<td>${i.productcount}</td>
+							<td id="product${cnt.count}">${i.productcount}</td>
 							<td>
 								<span class="buttonFuc"><a href="#">구매</a></span>
 								<span class="buttonFuc">

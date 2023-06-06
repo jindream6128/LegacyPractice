@@ -86,4 +86,9 @@ public class CartServiceImp implements CartService{
     public List<ProductDTO> searchProduct(HashMap<String, String> map) {
         return dao.searchProduct(map);
     }
+
+    @Override
+    public List<ProductDTO> cartSearchProduct(HashMap<String, String> map) {
+        return dao.cartSearchProduct(map);
+    }
 }

@@ -93,4 +93,9 @@ public class CartDaoImp implements CartDao {
     public List<ProductDTO> searchProduct(HashMap<String, String> map) {
         return sqlSession.selectList(nameSpace+"searchProduct",map);
     }
+
+    @Override
+    public List<ProductDTO> cartSearchProduct(HashMap<String, String> map) {
+        return sqlSession.selectList(nameSpace+"cartlistSearch",map);
+    }
 }

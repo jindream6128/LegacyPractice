@@ -128,6 +128,16 @@ private int    no;
             </choose>
     </select>
 
+
+    <select id="cartlistSearch" parameterType="java.util.HashMap" resultType="product" resultMap="prodcutListID">
+        SELECT P.no, P.productname, P.productlocation, P.productprice, P.productcategory, P.productfilename, P.id, P.today, B.productCount
+        FROM PRODUCT AS P
+                 INNER JOIN
+             BASKET AS B
+        WHERE P.no = B.PRODUCTNO
+          and B.USERID=#{id} and P.PRODUCTNAME LIKE CONCAT('%',#{cartlistquery},'%')
+        ORDER BY TODAY DESC;
+    </select>
 </mapper>
 
 

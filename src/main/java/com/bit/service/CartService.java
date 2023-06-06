@@ -6,6 +6,8 @@ import java.util.List;
 import com.bit.dto.BasketDTO;
 import com.bit.dto.ProductDTO;
 
+import javax.servlet.http.HttpSession;
+
 public interface CartService {
     // 로그인 id pass 체크
     public boolean idPassCheck(HashMap<String, Object>map);
@@ -17,7 +19,8 @@ public interface CartService {
     public List<ProductDTO> allProductList();
     //상세보기 -> 해당하는 게시글의 번호로 해당 글들의 정보 보기
     public ProductDTO productInfo(int no);
-
+    // 데이터 modify 하기 -> 근데 이거 아직 구현 안된거 같음
+    public void productAdminUpdate(ProductDTO dto);
     //장바구니
     //인설트 전에 데이터가 있는지 확인하기
     public boolean checkBasketdata(BasketDTO basketDTO);
@@ -33,14 +36,17 @@ public interface CartService {
     public void deleteBasketproduct(BasketDTO basketDTO);
     //검색하기 (카테고리랑, 검색 키워드 가지고가기)
     public List<ProductDTO> searchProduct(HashMap<String,String> map);
+
+    //장바구니에서 검새하기
+    public List<ProductDTO> cartSearchProduct(HashMap<String,String> map);
+
     /////////////////////////////////////////////
 
 
     //해당하는 번호에 해당하는 게시글 삭제하기
     public void productDelete(int no);
 
-    // 데이터 modify 하기 -> 근데 이거 아직 구현 안된거 같음
-    public void productAdminUpdate(ProductDTO dto);
+
 
 
 
