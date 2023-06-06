@@ -88,4 +88,9 @@ public class CartDaoImp implements CartDao {
     public void deleteBasketproduct(BasketDTO basketDTO) {
         sqlSession.delete(nameSpace+"deleteBasketproduct",basketDTO);
     }
+
+    @Override
+    public List<ProductDTO> searchProduct(HashMap<String, String> map) {
+        return sqlSession.selectList(nameSpace+"searchProduct",map);
+    }
 }

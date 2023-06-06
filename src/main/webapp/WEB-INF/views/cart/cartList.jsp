@@ -11,6 +11,17 @@
 		$('input[name=productcheckbox]').click(calculatePrice);
 	})
 
+/*	function checkselectCheckAll(){
+		let listsize = ${listsize}; //돌아야할 for문의 횟수
+		for(let i = 0; i<listsize; i++){
+			let tmp = '#'+i;
+			if(!$(tmp).is(':checked')){
+				$('input#checkBox_all').prop('checked',false);
+				return;
+			}
+		}
+	}*/
+
 	function selectCheckAll(){
 		if($('input#checkBox_all').is(':checked')){
 			$('input[name=productcheckbox]').prop('checked',true);
@@ -23,6 +34,7 @@
 
 	//계산하기.. 총합..
 	function calculatePrice(){
+		//checkselectCheckAll();
 		let sum =0
 		//뿌리는 전체 리스트의 사이즈
 		let listsize = ${listsize};
@@ -84,9 +96,11 @@
 						<tbody>
 						<tr>
 							<th>업체명</th>
-							<td><select style="border:1px solid #ddd; height:20px; width:200px;">
-								<option>선택하세요</option>
-							</select></td>
+							<td>
+								<select style="border:1px solid #ddd; height:20px; width:200px;">
+									<option>선택하세요</option>
+								</select>
+							</td>
 							<th>상품명</th>
 							<td><input type="text" name="" class="" size="30" style="border:1px solid #ddd; height:20px;"/>
 								<span class="button"><a href="#">검색</a></span></td>

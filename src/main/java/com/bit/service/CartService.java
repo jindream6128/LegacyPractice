@@ -31,6 +31,8 @@ public interface CartService {
     public List<ProductDTO> selectBasketAll(String id);
     //장바구니에서 지우기
     public void deleteBasketproduct(BasketDTO basketDTO);
+    //검색하기 (카테고리랑, 검색 키워드 가지고가기)
+    public List<ProductDTO> searchProduct(HashMap<String,String> map);
     /////////////////////////////////////////////
 
 

@@ -81,4 +81,9 @@ public class CartServiceImp implements CartService{
     public void deleteBasketproduct(BasketDTO basketDTO) {
         dao.deleteBasketproduct(basketDTO);
     }
+
+    @Override
+    public List<ProductDTO> searchProduct(HashMap<String, String> map) {
+        return dao.searchProduct(map);
+    }
 }

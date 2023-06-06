@@ -121,7 +121,7 @@ public class CartController {
 
     @GetMapping(value = "cartAdd")
     public String cartAddProcess() {
-        System.out.println("cartAddProcess");
+        //System.out.println("cartAddProcess");
         return "cart/cartList";
     }
 
@@ -133,7 +133,7 @@ public class CartController {
 
     @GetMapping("/productDelete/{no}")
     public String productDeleteProcess(@PathVariable("no")int no) {
-        System.out.println("no===="+no);
+       // System.out.println("no===="+no);
         cartService.productDelete(no);
         return "redirect:/productAdd";
     }
@@ -181,6 +181,9 @@ public class CartController {
         model.addAttribute("list",cartService.selectBasketAll(id));
         return "cart/cartList";
     }
+
+
+
 }
 
 

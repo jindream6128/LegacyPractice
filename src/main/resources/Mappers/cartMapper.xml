@@ -117,6 +117,17 @@ private int    no;
         DELETE FROM Basket where USERID =#{USERID} and PRODUCTNO = #{PRODUCTNO}
     </delete>
 
+    <select id="searchProduct" parameterType="java.util.HashMap" resultMap="prodcutListID" resultType="product">
+        select * from product
+            <choose>
+                <when test="query != null and data != null">
+                    <where>
+                        ${query} LIKE CONCAT('%', "${data}", '%');
+                    </where>
+                </when>
+            </choose>
+    </select>
+
 </mapper>
 
 
