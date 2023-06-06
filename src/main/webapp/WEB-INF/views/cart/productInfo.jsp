@@ -3,6 +3,31 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(function () {
+        $('span#deleteButton').click(function (){
+            var sessionid = '${sessionScope.id}';
+            var listid = '${list.id}';
+            console.log(sessionid)
+            console.log(listid)
+
+            var question = confirm("정말 글을 삭제하시겠습니까?");
+
+            if(sessionid !== listid){
+                alert("작성자가 아닙니다.");
+                return false;
+            }else {
+                if (question) {
+                    location.href = "/delete/${list.no}";
+                } else {
+                    return false;
+                }
+            }
+        })
+    });
+    <!--  관리자페이지 구현 X  -->
+</script>
 <head>
     <title>관리자</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -28,7 +53,7 @@
                 <div class="contents">
                     <div class="btnSet clfix mgb15">
 						<span class="fr">
-
+                            <span class="button" id="deleteButton"><a> 제품 삭제 </a></span>
                             <span class="button"><a href="#">물품구매</a></span>
 							<span class="button"> <a href="${pageContext.request.contextPath}/basket/${list.no}/${sessionScope.id}">장바구니</a></span>
 							<span class="button"><a href="/productList">목록</a></span>
