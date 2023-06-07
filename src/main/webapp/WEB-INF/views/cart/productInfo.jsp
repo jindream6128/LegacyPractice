@@ -105,16 +105,18 @@
     <div class="board_form">
         <div class="board_writer03">
             <ul>
-                <li><textarea rows="" cols="" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="등록" onclick="location.href='.jsp'"/></li>
+                <li><textarea rows="" cols="" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--여기에 댓글 데이터 입력--%>
+                    <input type="button" value="등록" onclick="location.href='.jsp'"/></li> <%--이거 누르면 데이터 전송--%>
             </ul>
         </div>
+        <%--여기는 뿌리는 영역임--%>
         <div class="contents">
             <div class="letter_top">
                 <ul>
-                    <li class="letter_f"><strong>작성자</strong> </li>
+                    <li class="letter_f"><strong>작성자</strong> </li><%--여기에 작성자 와야함--%>
                     <li><span>|</span></li>
-                    <li class="letter_f02"><img alt="" src="${pageContext.request.contextPath}/resources/img/re.jpg" style="width:10px;height:10px;">&nbsp;답글</li>
-                    <li class="letter_cl">내용이들어갑니다.</li>
+                    <li class="letter_f02"><img alt="" src="${pageContext.request.contextPath}/resources/img/re.jpg" style="width:10px;height:10px;">&nbsp;답글</li> <%--여기서 이거누르면 답글--%>
+                    <li class="letter_cl">내용이들어갑니다.</li><%--내용--%>
                 </ul>
 
                 <!-- 내가 작성한 부분만 수정 삭제 가능 -->
