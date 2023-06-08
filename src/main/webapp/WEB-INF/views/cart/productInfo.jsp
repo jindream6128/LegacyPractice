@@ -26,6 +26,50 @@
             }
         })
     });
+
+    $(function (){
+        $("#commentadd").click(function (){
+            let user_id = "${sessionScope.id}";
+            let contents = $('#textarea').val();
+            let board_no = ${list.no};
+           $.ajax({
+               url:'/comment/firstadd',
+               type:'POST',
+               data:{
+                   "user_id":user_id,
+                   "contents":contents,
+                   "board_no":board_no,
+               },
+               success:function (data){
+                   if(data.trim() !== "success"){
+                       alert("오류가 발생하였였습니다")
+                   }
+                   location.reload();
+                   //기존에 있는거에서 추가하기
+               },
+               error:function (){
+                   alert("ajaxError")
+               }
+           })
+        })
+    })
+
+    $(document).ready(function (){
+        $.ajax({
+            url:"/comment/getcomment",
+            type:"get",
+            dataType:"json",
+            data:{"board_no":${list.no}},
+            success:function (data){
+
+                console.log(data);
+            },
+            error:function (){
+                alert("ajaxError")
+            }
+        })
+    })
+
     <!--  관리자페이지 구현 X  -->
 </script>
 <head>
@@ -59,6 +103,8 @@
 							<span class="button"><a href="/productList">목록</a></span>
 						</span>
                     </div>
+
+
                     <table class="bbsList">
                         <colgroup>
                             <col width="400" />
@@ -68,7 +114,7 @@
                         <tr>
                             <th scope="col" class="fir">이미지</th>
                             <th scope="col">글번호</th>
-                            <td>${cnt_no}</td>
+                            <td>${list.no}</td>
                         </tr>
                         <tr>
 
@@ -105,10 +151,12 @@
     <div class="board_form">
         <div class="board_writer03">
             <ul>
-                <li><textarea rows="" cols="" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--여기에 댓글 데이터 입력--%>
-                    <input type="button" value="등록" onclick="location.href='.jsp'"/></li> <%--이거 누르면 데이터 전송--%>
+                <li><textarea id="textarea" rows="" cols="" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--여기에 댓글 데이터 입력--%>
+                    <input type="button" value="등록" id="commentadd"/></li> <%--이거 누르면 데이터 전송--%>
             </ul>
         </div>
+
+
         <%--여기는 뿌리는 영역임--%>
         <div class="contents">
             <div class="letter_top">

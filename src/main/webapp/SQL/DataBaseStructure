@@ -30,7 +30,7 @@ create table BASKET
     PRODUCTCOUNT int default 1
 );
 
-#댓글 DB
+#댓글 DB -> fail
 create table COMMENT(
     NO int(10) not null auto_increment primary key ,
     USER_ID int(10) not null,
@@ -44,3 +44,11 @@ create table COMMENT(
     BOARD_NO int(10) not null
 );
 
+#댓글 DB2
+create table COMMENT2(
+                        NO int(10) not null auto_increment primary key ,
+                        USER_ID varchar(30) not null,
+                        CONTENTS varchar(500) not null,
+                        REGDATE datetime default now(),
+                        BOARD_NO int(10) not null
+);

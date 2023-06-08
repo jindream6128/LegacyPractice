@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.bit.dto.BasketDTO;
+import com.bit.dto.Comment2DTO;
 import com.bit.dto.ProductDTO;
 import com.bit.dto.SignupDTO;
 
@@ -57,5 +58,9 @@ public interface CartDao {
     //회원가입
     public void signup(SignupDTO signupDTO);
 
+    /////////////////////////////댓글 인설트
+    public void addComment(Comment2DTO comment2DTO);
 
+    //댓글 가져오기
+    public List<Comment2DTO> getComment(int board_no);
 }
