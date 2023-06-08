@@ -47,6 +47,15 @@ public interface CartService {
     //해당하는 번호에 해당하는 게시글 삭제하기
     public void productDelete(int no);
 
+    //버튼 누르기전에 갯수 확인하기
+    public int selectproductCnt(HashMap<String ,String>map);
+
+    //마이너스 버튼 눌렀을때 갯수 내리기
+    public void minusproduct(HashMap<String,String> map);
+
+    //플러스 버튼 눌렀을때 갯수 늘리기
+    public void plusproduct(HashMap<String ,String >map);
+
 
     ////////////////////////////////
     //회원가입 전 중복 아이디 체크

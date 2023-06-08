@@ -104,4 +104,19 @@ public class CartServiceImp implements CartService{
     public void signup(SignupDTO signupDTO) {
         dao.signup(signupDTO);
     }
+
+    @Override
+    public int selectproductCnt(HashMap<String, String> map) {
+        return dao.selectproductCnt(map);
+    }
+
+    @Override
+    public void minusproduct(HashMap<String, String> map) {
+        dao.minusproduct(map);
+    }
+
+    @Override
+    public void plusproduct(HashMap<String, String> map) {
+        dao.plusproduct(map);
+    }
 }

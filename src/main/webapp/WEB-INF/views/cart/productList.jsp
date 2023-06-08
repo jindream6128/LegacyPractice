@@ -26,6 +26,7 @@
             if (session_id == '') {
                 $("span#logout").hide();
                 $("span#add").hide();
+                $("span#shopingcart").hide();
             } else {
                 $("span#login").hide();
             }
@@ -57,6 +58,7 @@
                 <div class="contents">
                     <div class="btnSet clfix mgb15">
 						<span class="fr">
+                            <span class="button" id ="shopingcart"><a href="/gocartList">장바구니</a> </span>
                             <span class="button" id="logout"><a
                                     href="${pageContext.request.contextPath}/logout">로그아웃</a></span>
                             <span class="button" id="add"><a href="${pageContext.request.contextPath}/productAdd">등록</a></span>

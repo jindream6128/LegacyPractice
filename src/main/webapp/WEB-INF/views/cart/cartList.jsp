@@ -46,7 +46,7 @@
 			//체크박스 아이디임
 			let tmp = '#'+i;
 			let price = '#'+i+'productprice';
-			let productcnt = '#product' + i;
+			let productcnt = 'span#product' + i;
 			if($(tmp).is(':checked')){
 				//console.log($(price).text());
 				sum += Number($(price).text()) * Number($(productcnt).text());
@@ -55,6 +55,52 @@
 		$('input#total').val(sum);
 	}
 
+	// minus button 클릭
+	$(function (){
+		$("button[name=btnminus]").click(function(){
+				$.ajax({
+					url:'/cart/productminus',
+					type:"get",
+					data:{
+						"id":"${sessionScope.id}",
+						"productno": this.id,
+					},
+					success:function (data){
+						if(data.trim() == "fail"){
+							alert("최소 갯수 입니다.")
+						}else {
+							location.reload();
+						}
+					},
+					error:function (){
+						alert("ajaxError");
+					}
+				})
+
+		})
+	})
+
+
+	// plus button 클릭
+	$(function (){
+		$("button[name=btnplus]").click(function(){
+			$.ajax({
+				url:'/cart/productplus',
+				type:"get",
+				data:{
+					"id":"${sessionScope.id}",
+					"productno": this.id,
+				},
+				success:function (data){
+					location.reload();
+				},
+				error:function (){
+					alert("ajaxError");
+				}
+			})
+
+		})
+	})
 
 </script>
 <head>
@@ -65,6 +111,8 @@
 	<meta http-equiv="imagetoolbar" content="no" />
 	<!-- <link href="../css/contents.css" rel="stylesheet" type="text/css" /> -->
 	<link href="${pageContext.request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
+	<link href="${pageContext.request.contextPath}/resources/css/button.css" rel="stylesheet" type="text/css" />
+
 
 
 
@@ -130,7 +178,7 @@
 							<col width="170" />
 							<col width="170" />
 							<col width="200" />
-							<col width="50" />
+							<col width="100" />
 							<col width="150" />
 						</colgroup>
 						<thead>
@@ -164,7 +212,13 @@
 							<td id="${cnt.count}productprice">${i.productPrice}</td>
 							<td>${i.productCategory}</td>
 							<td>${i.regdate}</td>
-							<td id="product${cnt.count}">${i.productcount}</td>
+
+							<td id="product${cnt.count}">
+								<button type="button" name="btnminus" class="minus" id="${i.no}">-</button>
+								<span id = "product${cnt.count}">${i.productcount}</span>
+								<button type="button" name="btnplus" class="plus" id="${i.no}">+</button>
+							</td>
+
 							<td>
 								<span class="buttonFuc"><a href="#">구매</a></span>
 								<span class="buttonFuc">

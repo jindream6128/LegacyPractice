@@ -18,6 +18,7 @@ public class CartDaoImp implements CartDao {
     static String nameSpace="com.bit.dto.cartMapper.";
     static String userNameSpace = "com.bit.dto.userMapper.";
 
+
     @Override
     public List<ProductDTO> allProductList() {
         return sqlSession.selectList(nameSpace+"allProductList");
@@ -111,5 +112,20 @@ public class CartDaoImp implements CartDao {
     @Override
     public void signup(SignupDTO signupDTO) {
         sqlSession.insert(userNameSpace+"signup",signupDTO);
+    }
+
+    @Override
+    public int selectproductCnt(HashMap<String, String> map) {
+        return sqlSession.selectOne(nameSpace+"selectproductCnt",map);
+    }
+
+    @Override
+    public void minusproduct(HashMap<String, String> map) {
+        sqlSession.update(nameSpace+"downproductCnt",map);
+    }
+
+    @Override
+    public void plusproduct(HashMap<String, String> map) {
+        sqlSession.update(nameSpace+"plusproductCnt" ,map);
     }
 }

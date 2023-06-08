@@ -138,6 +138,18 @@ private int    no;
           and B.USERID=#{id} and P.PRODUCTNAME LIKE CONCAT('%',#{cartlistquery},'%')
         ORDER BY TODAY DESC;
     </select>
+
+    <select id="selectproductCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select PRODUCTCOUNT from BASKET where userid=#{id} and productno=#{productno};
+    </select>
+
+    <update id="downproductCnt" parameterType="java.util.HashMap">
+        update BASKET set PRODUCTCOUNT =bitdb.BASKET.PRODUCTCOUNT-1 where userid=#{id} and PRODUCTNO= #{productno};
+    </update>
+
+    <update id="plusproductCnt" parameterType="java.util.HashMap">
+        update BASKET set PRODUCTCOUNT =bitdb.BASKET.PRODUCTCOUNT+1 where userid=#{id} and PRODUCTNO= #{productno};
+    </update>
 </mapper>
 
 
