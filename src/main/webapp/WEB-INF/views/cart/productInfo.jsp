@@ -37,7 +37,7 @@
     <link href="${pageContext.request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
     <link href="${pageContext.request.contextPath}/resources/css/reply.css" rel="stylesheet" type="text/css" />
 </head>
-<body >
+<body>
 
 <div id="wrap">
     <!-- header -->
