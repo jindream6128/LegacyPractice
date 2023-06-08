@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.dto.commentMapper">
+
+
+</mapper>
+
+
+
+
+
+
+<insert id="createComment" parameterType="Comment">
+    <choose>
+        <when test="ref == 0">
+            insert into comment (user_id, content, regdate, ref, step, lev, parent_num, reply, board_no)
+            values (#{userId}, #{content}, now(), (select no from (SELECT no FROM comment ORDER BY no DESC LIMIT 1)as t) +1, #{step}, #{lev},
+            (select no from (SELECT no FROM comment ORDER BY no DESC LIMIT 1)as t) +1, #{reply}, #{boardNo})
+        </when>
+        <otherwise>
+            insert into comment (user_id, content, regdate, ref, step, lev, parent_num, reply, board_no)
+            values (#{userId}, #{content}, now(), #{ref}, #{step}, #{lev}, #{parentNum}, #{reply}, #{boardNo})
+        </otherwise>
+    </choose>
+</insert>
+
+<select id="selectById" parameterType="int" resultType="Comment">
+    select *
+    from comment
+    where no = #{id}
+</select>
+<update id="addReply" parameterType="int">
+    update comment
+    set reply = reply + 1
+    where no = #{no}
+</update>
+
+<update id="updateStep" parameterType="Comment">
+    update comment
+    set step = step +1
+    where ref = #{ref} and step &gt;= #{step}
+</update>
+
+
+<select id="selectAllByBoardId" parameterType="int" resultType="Comment">
+    select *
+    from comment
+    where board_no = #{id}
+    order by ref desc, step asc
+</select>
+
+
+
+

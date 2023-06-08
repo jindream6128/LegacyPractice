@@ -135,7 +135,9 @@
 
         <div class="board_writer03" style="display: none;">
             <ul>
-                <li ><textarea rows="" cols="" ></textarea>&nbsp;&nbsp;<input type="button" value="등록" onclick="location.href='.jsp'"/></li>
+                <li ><textarea rows="" cols="" ></textarea>&nbsp;&nbsp;
+                    <input type="button" value="등록" onclick="location.href='.jsp'"/>
+                </li>
             </ul>
         </div>
     </div>
