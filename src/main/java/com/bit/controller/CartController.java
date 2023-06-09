@@ -2,6 +2,7 @@ package com.bit.controller;
 
 import java.io.FileOutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.stream.DoubleStream;
 
 import javax.servlet.http.Cookie;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bit.dto.BasketDTO;
+import com.bit.dto.CommentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -148,6 +150,11 @@ public class CartController {
         model.addAttribute("list", cartService.productInfo(no));
         //no <- 이게 실질적인 제품 번호 ~! cnt_no <- 이거는 상품의 갯수
         model.addAttribute("cnt_no",cnt_no);
+
+        /*List<CommentDTO> selectallcomment = cartService.selectallcomment(no);
+        System.out.println(selectallcomment);
+        model.addAttribute("commentlist",selectallcomment);*/
+
         return "cart/productInfo";
     }
 

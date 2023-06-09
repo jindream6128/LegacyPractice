@@ -6,11 +6,10 @@
 	
 		<!-- VO&DTO를 등록하세요 (별칭 설정)--> 
 		<typeAliases>
-
 			<typeAlias type="com.bit.dto.ProductDTO" alias="product"/>
 			<typeAlias type="com.bit.dto.BasketDTO" alias="basket"/>
 			<typeAlias type="com.bit.dto.SignupDTO" alias="signup"/>
-
+			<typeAlias type="com.bit.dto.CommentDTO" alias="comment"/>
 		</typeAliases>
 
 

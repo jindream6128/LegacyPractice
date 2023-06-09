@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.bit.dto.BasketDTO;
+import com.bit.dto.CommentDTO;
 import com.bit.dto.SignupDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class CartDaoImp implements CartDao {
     private SqlSessionTemplate sqlSession;
     static String nameSpace="com.bit.dto.cartMapper.";
     static String userNameSpace = "com.bit.dto.userMapper.";
+    static String commentNameSpace = "com.bit.dto.commentMapper.";
 
 
     @Override
@@ -127,5 +129,15 @@ public class CartDaoImp implements CartDao {
     @Override
     public void plusproduct(HashMap<String, String> map) {
         sqlSession.update(nameSpace+"plusproductCnt" ,map);
+    }
+
+    @Override
+    public void insertcomment(CommentDTO commentDTO) {
+        sqlSession.insert(commentNameSpace+"insertcomment",commentDTO);
+    }
+
+    @Override
+    public List<CommentDTO> selectallcomment(int BOARD_NO) {
+        return sqlSession.selectList(commentNameSpace+"selectallcomment",BOARD_NO);
     }
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.bit.dto.BasketDTO;
+import com.bit.dto.CommentDTO;
 import com.bit.dto.SignupDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -118,5 +119,15 @@ public class CartServiceImp implements CartService{
     @Override
     public void plusproduct(HashMap<String, String> map) {
         dao.plusproduct(map);
+    }
+
+    @Override
+    public void insertcomment(CommentDTO commentDTO) {
+        dao.insertcomment(commentDTO);
+    }
+
+    @Override
+    public List<CommentDTO> selectallcomment(int BOARD_NO) {
+        return dao.selectallcomment(BOARD_NO);
     }
 }
