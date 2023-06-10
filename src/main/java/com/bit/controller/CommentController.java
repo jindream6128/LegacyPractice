@@ -2,11 +2,13 @@ package com.bit.controller;
 
 import com.bit.dto.CommentDTO;
 import com.bit.service.CartService;
+import com.mysql.cj.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -46,13 +48,24 @@ public class CommentController {
         return selectallcomment;
     }
 
- /*   @GetMapping("/productInfo/{no}/{cnt_no}")
-    public String productInfoProcess(@PathVariable("no")int no, @PathVariable("cnt_no")int cnt_no, Model model){
-        //해당 게시글 번호의 데이터 가져오기
-        model.addAttribute("list", cartService.productInfo(no));
-        //no <- 이게 실질적인 제품 번호 ~! cnt_no <- 이거는 상품의 갯수
-        model.addAttribute("cnt_no",cnt_no);
+    @PostMapping("/addinsert")
+    public String addinsertcomment(HttpSession session,String BOARD_NO,String PARENT_NO,String session_USER_ID,String CONTENTS,Model model){
+
+        String USER_ID = (String) session.getAttribute("id");
+        CommentDTO commentDTO= new CommentDTO(Integer.parseInt(BOARD_NO),Integer.parseInt(PARENT_NO),USER_ID,CONTENTS);
+        System.out.println(commentDTO);
+        System.out.println("--------------------");
+        System.out.println(BOARD_NO);
+        System.out.println(PARENT_NO);
+        System.out.println(USER_ID);
+        System.out.println(CONTENTS);
+        System.out.println("--------------------");
+
+        cartService.addinsertcomment(commentDTO);
+        model.addAttribute("list", cartService.productInfo(Integer.parseInt(BOARD_NO)));
+        model.addAttribute("cnt_no",BOARD_NO);
         return "cart/productInfo";
-    }*/
+    }
+
 
 }

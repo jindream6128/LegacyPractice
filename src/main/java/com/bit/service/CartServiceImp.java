@@ -130,4 +130,9 @@ public class CartServiceImp implements CartService{
     public List<CommentDTO> selectallcomment(int BOARD_NO) {
         return dao.selectallcomment(BOARD_NO);
     }
+
+    @Override
+    public void addinsertcomment(CommentDTO commentDTO) {
+        dao.addinsertcomment(commentDTO);
+    }
 }

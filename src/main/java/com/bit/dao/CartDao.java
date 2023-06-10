@@ -64,4 +64,7 @@ public interface CartDao {
 
     //해당 게시글의 댓글 통째로 가져오기
     public List<CommentDTO> selectallcomment(int BOARD_NO);
+
+    //대댓글들 부모댓글 달고 넣기
+    public void addinsertcomment(CommentDTO commentDTO);
 }

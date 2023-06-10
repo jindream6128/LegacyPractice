@@ -127,7 +127,52 @@
         </div>
 
         <div id="comment_loc">
+
         <script type="text/javascript">
+            function dynamicReply (container, comment) {
+
+// form 요소 생성
+                var form = document.createElement('form');
+                form.setAttribute('method', 'POST'); // form의 메소드를 POST로 설정
+                form.setAttribute('action', '/comment/addinsert'); // 액션을 "/comment"로 설정
+                // hidden input 요소 생성 (productId)
+                var productIdInput = document.createElement('input');
+                productIdInput.setAttribute('type', 'hidden');
+                productIdInput.setAttribute('name', 'session_USER_ID');
+                productIdInput.setAttribute('value', '${sessionScope.id}');
+
+                // hidden input 요소 생성 (productId)
+                var productIdInput = document.createElement('input');
+                productIdInput.setAttribute('type', 'hidden');
+                productIdInput.setAttribute('name', 'BOARD_NO');
+                productIdInput.setAttribute('value', comment.board_NO);
+
+                // hidden input 요소 생성 (parents)
+                var parentsInput = document.createElement('input');
+                parentsInput.setAttribute('type', 'hidden');
+                parentsInput.setAttribute('name', 'PARENT_NO');
+                parentsInput.setAttribute('value', comment.no);
+
+                // input 요소 생성
+                var input = document.createElement('input');
+                input.setAttribute('type', 'text');
+                input.setAttribute('name', 'CONTENTS');
+                input.style.width = '800px'; // Set the width to 200 pixels
+                input.style.height = '50px';
+                // submit 버튼 생성
+                var submit = document.createElement('input');
+                submit.setAttribute('type', 'submit');
+                submit.setAttribute('value', '등록');
+
+                // form에 input과 submit 버튼 추가
+                form.appendChild(input);
+                form.appendChild(submit);
+                form.appendChild(productIdInput);
+                form.appendChild(parentsInput);
+
+                container.appendChild(form);
+            }
+
 
         $.ajax({
             url:'/comment/selectallcomment',
@@ -151,6 +196,10 @@
             }
         })
 
+        const deptinput = function (){
+            alert();
+        }
+
 
         const drawing = function (margin, comment) {
             console.log(comment);
@@ -161,18 +210,23 @@
             var container = document.createElement("div");
             container.className = "contents";
             container.style.marginLeft = margin + "px";
+
 // Create the letter_top div
             var letterTopDiv = document.createElement("div");
             letterTopDiv.className = "letter_top";
+
 // Create the ul element inside letter_top
             var ulLetterTop = document.createElement("ul");
+
 // Create and append the li elements to ulLetterTop
             var liAuthor = document.createElement("li");
             liAuthor.className = "letter_f";
             var strongTag = document.createElement("strong");
-            strongTag.innerText = comment.user_ID;
+            strongTag.innerText = comment.user_ID
             liAuthor.appendChild(strongTag);
+
             ulLetterTop.appendChild(liAuthor);
+
 // Create the li element for the separator
             var liSeparator1 = document.createElement("li");
             var spanSeparator1 = document.createElement("span");
@@ -180,58 +234,88 @@
             liSeparator1.appendChild(spanSeparator1);
 // Append liSeparator1 to ulLetterTop
             ulLetterTop.appendChild(liSeparator1);
+
             var liReply = document.createElement("li");
             liReply.className = "letter_f02";
+
+            var formFlag = false;
             var aTag = document.createElement("a");
             aTag.innerHTML = "답글"
+            aTag.onclick = function () {
+                if(!formFlag) {
+                    formFlag = true;
+                    dynamicReply(container, comment);
+                }
+            };
             liReply.appendChild(aTag);
             ulLetterTop.appendChild(liReply);
+
             var liContent = document.createElement("li");
             liContent.className = "letter_cl";
             liContent.innerText = comment.contents;
             ulLetterTop.appendChild(liContent);
+
 // Append ulLetterTop to letterTopDiv
             letterTopDiv.appendChild(ulLetterTop);
+
 // Create the ul element for letter_r
             var ulLetterR = document.createElement("ul");
             ulLetterR.className = "letter_r";
+
 // Create the li element for 수정
             var liEdit = document.createElement("li");
             var spanEdit = document.createElement("span");
             spanEdit.innerText = "수정";
             liEdit.appendChild(spanEdit);
+
 // Append liEdit to ulLetterR
             ulLetterR.appendChild(liEdit);
+
 // Create the li element for the separator
             var liSeparator2 = document.createElement("li");
             var spanSeparator2 = document.createElement("span");
             spanSeparator2.innerText = "|";
             liSeparator2.appendChild(spanSeparator2);
+
 // Append liSeparator2 to ulLetterR
             ulLetterR.appendChild(liSeparator2);
+
 // Create the li element for 삭제
             var liDelete = document.createElement("li");
             var spanDelete = document.createElement("span");
             spanDelete.innerText = "삭제";
+            spanDelete.addEventListener("click",function (){
+                var locationhref = "/comment/commentdelete/"+comment.no;
+                window.location.href=locationhref;
+            })
             liDelete.appendChild(spanDelete);
+
 // Append liDelete to ulLetterR
             ulLetterR.appendChild(liDelete);
+
 // Append ulLetterR to letterTopDiv
             letterTopDiv.appendChild(ulLetterR);
+
 // Append letterTopDiv to the main container
             container.appendChild(letterTopDiv);
+
 // Create the letter_bottom div
             var letterBottomDiv = document.createElement("div");
             letterBottomDiv.className = "letter_bottom";
+
 // Create the ul element inside letter_bottom
             var ulLetterBottom = document.createElement("ul");
+
 // Create and append an empty li element to ulLetterBottom
             var liEmpty = document.createElement("li");
             ulLetterBottom.appendChild(liEmpty);
+
 // Append ulLetterBottom to letterBottomDiv
             letterBottomDiv.appendChild(ulLetterBottom);
+
 // Append letterBottomDiv to the main container
             container.appendChild(letterBottomDiv);
+
 // Append the main container to the document body
             target.appendChild(container);
         }

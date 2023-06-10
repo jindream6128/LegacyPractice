@@ -28,4 +28,11 @@ public class CommentDTO {
         this.USER_ID = USER_ID;
         this.CONTENTS = CONTENTS;
     }
+
+    public CommentDTO(int BOARD_NO, int PARENT_NO, String USER_ID, String CONTENTS) {
+        this.BOARD_NO = BOARD_NO;
+        this.PARENT_NO = PARENT_NO;
+        this.USER_ID = USER_ID;
+        this.CONTENTS = CONTENTS;
+    }
 }

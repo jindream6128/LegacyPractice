@@ -140,4 +140,9 @@ public class CartDaoImp implements CartDao {
     public List<CommentDTO> selectallcomment(int BOARD_NO) {
         return sqlSession.selectList(commentNameSpace+"selectallcomment",BOARD_NO);
     }
+
+    @Override
+    public void addinsertcomment(CommentDTO commentDTO) {
+        sqlSession.insert(commentNameSpace+"addinsertcomment",commentDTO);
+    }
 }

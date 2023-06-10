@@ -12,6 +12,10 @@
     <select id="selectallcomment" parameterType="int" resultType="comment">
         select  * from COMMENTFINAL where BOARD_NO=#{BOARD_NO};
     </select>
+
+    <insert id="addinsertcomment" parameterType="comment">
+        insert into COMMENTFINAL(BOARD_NO,PARENT_NO,USER_ID,CONTENTS) values(#{BOARD_NO},#{PARENT_NO}, #{USER_ID}, #{CONTENTS})
+    </insert>
 </mapper>
 
 
