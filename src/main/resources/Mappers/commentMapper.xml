@@ -16,6 +16,12 @@
     <insert id="addinsertcomment" parameterType="comment">
         insert into COMMENTFINAL(BOARD_NO,PARENT_NO,USER_ID,CONTENTS) values(#{BOARD_NO},#{PARENT_NO}, #{USER_ID}, #{CONTENTS})
     </insert>
+
+    <delete id="deletecomment" parameterType="int">
+        delete from COMMENTFINAL where no = #{no};
+    </delete>
+
+
 </mapper>
 
 

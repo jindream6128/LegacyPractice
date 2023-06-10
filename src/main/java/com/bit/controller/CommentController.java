@@ -67,5 +67,10 @@ public class CommentController {
         return "cart/productInfo";
     }
 
+    @DeleteMapping("/commentdelete/{no}")
+    public void deleteComment(@PathVariable int no){
+        System.out.println(no);
+        cartService.deletecomment(no);
+    }
 
 }

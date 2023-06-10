@@ -135,4 +135,10 @@ public class CartServiceImp implements CartService{
     public void addinsertcomment(CommentDTO commentDTO) {
         dao.addinsertcomment(commentDTO);
     }
+
+
+    @Override
+    public void deletecomment(int no) {
+        dao.deletecomment(no);
+    }
 }

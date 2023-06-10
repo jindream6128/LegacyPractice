@@ -71,4 +71,7 @@ public interface CartService {
 
     //대댓글들 부모댓글 달고 넣기
     public void addinsertcomment(CommentDTO commentDTO);
+
+    //댓글 삭제하기
+    public void deletecomment(int no);
 }

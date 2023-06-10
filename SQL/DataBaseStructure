@@ -30,6 +30,21 @@ create table BASKET
     PRODUCTCOUNT int default 1
 );
 
+
+#댓글 real final
+create table COMMENTFINAL(
+        NO int(10) not null auto_increment primary key, # 이거는 댓글 번호
+        BOARD_NO int(10) not null, # 이거는 해당 게시글의 번호
+        PARENT_NO int(10) default 0, # 이거는 부모 댓글의 번호 -> 맨위에서 등록 누르면 기본값은 0 이다
+        USER_ID varchar(30) not null, # 로그인한 아이디임
+        CONTENTS varchar(500) not null, # 댓글 내용
+        REGDATE datetime default now() # 댓글 작성 시간.
+);
+
+
+
+Legacy
+<
 #댓글 DB
 create table COMMENT(
     NO int(10) not null auto_increment primary key ,
@@ -52,14 +67,5 @@ create table COMMENT2(
                         REGDATE datetime default now(),
                         BOARD_NO int(10) not null
 );
-
-#댓글 real final
-create table COMMENTFINAL(
-        NO int(10) not null auto_increment primary key, # 이거는 댓글 번호
-        BOARD_NO int(10) not null, # 이거는 해당 게시글의 번호
-        PARENT_NO int(10) default 0, # 이거는 부모 댓글의 번호 -> 맨위에서 등록 누르면 기본값은 0 이다
-        USER_ID varchar(30) not null, # 로그인한 아이디임
-        CONTENTS varchar(500) not null, # 댓글 내용
-        REGDATE datetime default now() # 댓글 작성 시간.
-);
+>
 

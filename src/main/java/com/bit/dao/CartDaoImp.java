@@ -145,4 +145,10 @@ public class CartDaoImp implements CartDao {
     public void addinsertcomment(CommentDTO commentDTO) {
         sqlSession.insert(commentNameSpace+"addinsertcomment",commentDTO);
     }
+
+
+    @Override
+    public void deletecomment(int no) {
+        sqlSession.delete(commentNameSpace+"deletecomment",no);
+    }
 }
